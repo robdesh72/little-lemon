@@ -1,4 +1,5 @@
-import './App.css';
+import "./App.css";
+import BookingForm from "./components/BookingForm";
 
 function App() {
   return (
@@ -9,10 +10,18 @@ function App() {
 
       <nav>
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#reservations">Reservations</a></li>
-          <li><a href="#about">About</a></li>
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#menu">Menu</a>
+          </li>
+          <li>
+            <a href="#booking">Reservations</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
         </ul>
       </nav>
 
@@ -24,13 +33,17 @@ function App() {
               Enjoy a selection of seasonal Mediterranean favorites inspired by
               Italy, Greece, and Turkey.
             </p>
-            <a href="#menu" className="promo-button">Explore Our Menu</a>
+            <a href="#menu" className="promo-button">
+              Explore Our Menu
+            </a>
           </article>
         </section>
 
         <section className="content-cards">
           <article id="menu">
-            <h2><a href="#menu">Our New Menu</a></h2>
+            <h2>
+              <a href="#menu">Our New Menu</a>
+            </h2>
             <img
               src="/images/menu.jpg"
               alt="Mediterranean dishes from Little Lemon"
@@ -42,7 +55,9 @@ function App() {
           </article>
 
           <article id="reservations">
-            <h2><a href="#reservations">Book a Table</a></h2>
+            <h2>
+              <a href="#booking">Book a Table</a>
+            </h2>
             <img
               src="/images/reservation.jpg"
               alt="Restaurant table prepared for dining"
@@ -54,16 +69,26 @@ function App() {
           </article>
 
           <article id="about">
-            <h2><a href="#about">About Little Lemon</a></h2>
+            <h2>
+              <a href="#about">About Little Lemon</a>
+            </h2>
             <img
               src="/images/about.jpg"
               alt="Interior of a Mediterranean restaurant"
             />
             <p>
-              Little Lemon is a family-owned Mediterranean restaurant in Chicago,
-              serving traditional recipes with a modern twist.
+              Little Lemon is a family-owned Mediterranean restaurant in
+              Chicago, serving traditional recipes with a modern twist.
             </p>
           </article>
+        </section>
+
+        <section
+          id="booking"
+          className="booking-section"
+          aria-label="Table reservation"
+        >
+          <BookingForm />
         </section>
       </main>
 
