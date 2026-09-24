@@ -1,6 +1,6 @@
 import { useState } from "react";
 const today = new Date().toLocaleDateString("en-CA");
-function BookingForm({ availableTimes, dispatch }) {
+function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [guests, setGuests] = useState(2);
@@ -9,11 +9,20 @@ function BookingForm({ availableTimes, dispatch }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   function handleSubmit(event) {
-    event.preventDefault();
-    alert(
-      `Reservation date: ${selectedDate}\nReservation time: ${selectedTime}\nGuests: ${guests}\nOccasion: ${occasion || "None"}\nFull name: ${fullName}\nEmail: ${email}\nPhone: ${phone || "Not provided"}`,
-    );
-  }
+  event.preventDefault();
+
+  const formData = {
+    date: selectedDate,
+    time: selectedTime,
+    guests: guests,
+    occasion: occasion,
+    fullName: fullName,
+    email: email,
+    phone: phone,
+  };
+
+  submitForm(formData);
+}
   return (
     <form onSubmit={handleSubmit}>
       <h2>Book a Table</h2>
