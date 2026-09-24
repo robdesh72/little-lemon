@@ -1,6 +1,6 @@
 import { useState } from "react";
 const today = new Date().toLocaleDateString("en-CA");
-function BookingForm() {
+function BookingForm({ availableTimes, dispatch }) {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [guests, setGuests] = useState(2);
@@ -11,8 +11,8 @@ function BookingForm() {
   function handleSubmit(event) {
     event.preventDefault();
     alert(
-  `Reservation date: ${selectedDate}\nReservation time: ${selectedTime}\nGuests: ${guests}`
-);
+      `Reservation date: ${selectedDate}\nReservation time: ${selectedTime}\nGuests: ${guests}\nOccasion: ${occasion || "None"}\nFull name: ${fullName}\nEmail: ${email}\nPhone: ${phone || "Not provided"}`,
+    );
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -24,7 +24,11 @@ function BookingForm() {
         type="date"
         min={today}
         value={selectedDate}
-        onChange={(event) => setSelectedDate(event.target.value)}
+        onChange={(event) => {
+          setSelectedDate(event.target.value);
+          setSelectedTime("");
+          dispatch(event.target.value);
+        }}
         required
       />
 
@@ -36,10 +40,15 @@ function BookingForm() {
         required
       >
         <option value="">Select a time</option>
-        <option value="17:00">5:00 PM</option>
-        <option value="18:00">6:00 PM</option>
-        <option value="19:00">7:00 PM</option>
-        <option value="20:00">8:00 PM</option>
+        {availableTimes.map((time) => (
+          <option key={time} value={time}>
+            {new Date(`2000-01-01T${time}:00`).toLocaleTimeString("en-US", {
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+            })}
+          </option>
+        ))}
       </select>
 
       <label htmlFor="guests">Number of guests*</label>

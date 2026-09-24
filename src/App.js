@@ -1,7 +1,21 @@
+import { useReducer } from "react";
 import "./App.css";
 import BookingForm from "./components/BookingForm";
 
+function initializeTimes() {
+  return window.fetchAPI(new Date());
+}
+
+function updateTimes(state, selectedDate) {
+  return window.fetchAPI(new Date(selectedDate));
+}
+
 function App() {
+  const [availableTimes, dispatch] = useReducer(
+    updateTimes,
+    [],
+    initializeTimes,
+  );
   return (
     <div className="App">
       <header>
@@ -88,7 +102,7 @@ function App() {
           className="booking-section"
           aria-label="Table reservation"
         >
-          <BookingForm />
+          <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
         </section>
       </main>
 
