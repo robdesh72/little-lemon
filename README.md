@@ -1,70 +1,63 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Little Lemon Restaurant Website
 
-## Available Scripts
+This project is a React website for the Little Lemon restaurant. It includes a homepage and a table booking form.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Restaurant homepage with navigation and images
+- Table booking form with date, time, number of guests, and occasion
+- Available booking times that update when the selected date changes
+- Form validation and a booking confirmation page
+- Unit tests for the booking-time functions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to Run the Project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Install Node.js and npm if they are not already installed.
+2. Download or clone this GitHub repository.
+3. Open the `little-lemon` project folder in VS Code.
+4. Open a terminal in the project folder and install the dependencies:
 
-### `npm test`
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. Start the development server:
 
-### `npm run build`
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Open http://localhost:3000 in your browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Windows PowerShell note:** If PowerShell blocks `npm`, use `npm.cmd install` and `npm.cmd start` instead.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How to Test the Booking Form
 
-### `npm run eject`
+1. Open the homepage and find the table booking form.
+2. Select a date and an available time.
+3. Enter the number of guests and complete the required fields.
+4. Submit the form.
+5. Check that the booking confirmation page appears.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The project uses a local mock booking API for available times and form submission. It does not create real restaurant reservations.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Run Unit Tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run the tests once with:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm test -- --watchAll=false
+```
 
-## Learn More
+On Windows PowerShell, you can use:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```powershell
+npm.cmd test -- --watchAll=false
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Create a Production Build
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm run build
+```

@@ -1,5 +1,5 @@
 import { useState } from "react";
-const today = new Date().toLocaleDateString("en-CA");
+const today = new Date().toLocaleDateString("sv-SE");
 function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
@@ -8,21 +8,30 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [bookingError, setBookingError] = useState("");
   function handleSubmit(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const formData = {
-    date: selectedDate,
-    time: selectedTime,
-    guests: guests,
-    occasion: occasion,
-    fullName: fullName,
-    email: email,
-    phone: phone,
-  };
+    const formData = {
+      date: selectedDate,
+      time: selectedTime,
+      guests: guests,
+      occasion: occasion,
+      fullName: fullName,
+      email: email,
+      phone: phone,
+    };
 
-  submitForm(formData);
-}
+    setBookingError("");
+
+    const bookingSucceeded = submitForm(formData);
+
+    if (!bookingSucceeded) {
+      setBookingError(
+        "We couldn't complete your reservation. Please try again.",
+      );
+    }
+  }
   return (
     <form onSubmit={handleSubmit}>
       <h2>Book a Table</h2>
@@ -31,6 +40,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
       <input
         id="res-date"
         type="date"
+        onClick={(event) => event.currentTarget.showPicker?.()}
         min={today}
         value={selectedDate}
         onChange={(event) => {
@@ -115,6 +125,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
       />
 
       <button type="submit">Make Your Reservation</button>
+      {bookingError && <p role="alert">{bookingError}</p>}
     </form>
   );
 }

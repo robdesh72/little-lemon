@@ -16,10 +16,16 @@ function BookingPage({ availableTimes, dispatch }) {
   const navigate = useNavigate();
 
   function submitForm(formData) {
-    if (window.submitAPI(formData)) {
-      navigate("/confirmed");
-    }
+  const bookingSucceeded = window.submitAPI(formData);
+
+  if (bookingSucceeded) {
+    navigate("/confirmed", {
+      state: { reservation: formData },
+    });
   }
+
+  return bookingSucceeded;
+}
 
   return (
     <BookingForm
@@ -50,7 +56,7 @@ function App() {
                 />
               </header>
 
-              <nav>
+              <nav aria-label="Main navigation">
                 <ul>
                   <li>
                     <a href="#home">Home</a>
